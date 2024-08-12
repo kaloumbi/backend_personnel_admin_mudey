@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Document</title>
+        <link rel="stylesheet" href="node_modules/bootstrap-ui/dist/css/bootstrap-ui.min.css">
+    </head>
+    <body>
+        
+        <!-- Main navigation -->
+        <nav class="navbar navbar-static-top navbar-primary">
+            <div class="container">
+                <!-- Brand and menu toggle -->
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#kssMenu">
+                        <span class="sr-only">Menu</span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a href="#" class="active navbar-brand offset-right-large" title="Bootstrap UI">ADMIN Library</a>
+                </div>
+                <!-- Collapsible menu -->
+                <div class="collapse navbar-collapse" id="kssMenu">
+                    <ul class="nav navbar-nav">
+                        <li><a href="#" id="livres" >Livres</a></li>
+                        <li><a href="#" id="emprunts" >Emprunt</a></li>
+                        <li><a href="#" id="historiques" >Historique</a></li>
+                        <li><a href="#" id="users" >Users</a></li>
+                    </ul>
+                </div><!-- .collapsible -->
+            </div><!-- .container -->
+        </nav>
+
+
+
+
+        <div class="container-fluid">
+        
+        </div>
+
+
+
+        <script type="module">
+            //importer un module
+            import {Library} from './js/library.js';
+        
+            //initialiser un objet
+            var library = new Library();
+
+
+        </script>
+    </body>
+</html>
