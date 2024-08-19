@@ -27,6 +27,17 @@ class Library {
 
                 }).then((data) => {
                     document.getElementsByClassName('container-fluid')[0].innerHTML = data;
+
+                    //tester si le click est sur les livres
+                    if (action == 'livres') {
+                        this.loadLivres();
+                    }else if(action == 'emprunts'){
+                        this.loadEmprunts();
+                    }else if(action == 'historiques'){
+                        this.loadHistoriques();
+                    }else if(action == 'users'){
+                        this.loadUsers();
+                    }
                 })
 
 
@@ -58,6 +69,77 @@ class Library {
                 }
             })
         })
+    }
+
+
+    //function to getData permettant de recuperer puis parcourir les données en local
+    getData(entity){
+        //tester si les données sont définies sinon tableau vide
+        return JSON.parse(localStorage.getItem(entity)) ? JSON.parse(localStorage.getItem(entity)) : [];
+    }
+
+
+    loadLivres() {
+        // const data = this.getData('livres');
+        // console.log('Data for Livres:', data);
+        
+        $('#dataTable').DataTable({
+            data: this.getData('livres'),
+            columns: [
+                { data: 'id' },
+                { data: 'titre' },
+                { data: 'autheur' },
+                { data: 'isbn' },
+                { data: 'datePub.date' },
+                { data: 'disponibilite' },
+                { data: 'createdAt.date' }
+            ]
+        });
+    }
+        
+
+    loadEmprunts(){
+        // const data = this.getData('emprunts');
+        // console.log('Data for Emprunts:', data);
+
+        $('#dataTable').DataTable( {
+
+            data: this.getData('emprunts'),
+            columns: [
+                { data: 'id' },
+                { data: 'dateEmprunt.date' },
+                { data: 'dateRetour.date' },
+                { data: 'userId' },
+                { data: 'livreId' }
+
+            ]
+        } );
+    }
+
+    loadHistoriques(){
+        $('#dataTable').DataTable( {
+            data: this.getData('historiques'),
+            columns: [
+                { data: 'id' },
+                { data: 'dateEmprunt.date' },
+                { data: 'dateRetour.date' },
+                { data: 'userId' },
+                { data: 'livreId' },
+                {data: "empruntId" }
+            ]
+        } );
+    }
+
+    loadUsers(){
+        $('#dataTable').DataTable( {
+            data: this.getData('users'),
+            columns: [
+                { data: 'id' },
+                { data: 'prenom' },
+                { data: 'nom' },
+                { data: 'login' }
+            ]
+        } );
     }
 
 
