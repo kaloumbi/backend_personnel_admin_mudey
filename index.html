@@ -35,6 +35,15 @@
         </nav>
 
 
+        <div class="container-fluid">
+            <div class="jumbotron">
+                <h1 class="display-4">Hello, world!</h1>
+                <p class="lead">This is a simple hero unit, a simple jumbotron-style component for calling extra attention to featured content or information.</p>
+                <hr class="my-4">
+                <p>It uses utility classes for typography and spacing to space content out within the larger container.</p>
+                <a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a>
+              </div>
+        </div>
 
 
         <div class="container-fluid">
@@ -47,6 +56,15 @@
 
 
         <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+
+        <script src="node_modules/moment/min/moment-with-locales.min.js"></script>
+        <script src="node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <!-- <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script> -->
+        <script src="node_modules/eonasdan-bootstrap-datetimepicker/build/js/bootstrap-datetimepicker.min.js"></script>
+        <script src="node_modules/select2/select2.js"></script>
+        <!-- Bootstrap UI JS -->
+        <script src="node_modules/bootstrap.ui/dist/js/bootstrap-ui.min.js"></script>
+
         <script src="https://cdn.datatables.net/2.1.3/js/dataTables.min.js"></script>
         <script type="module">
             //importer un module
@@ -54,8 +72,17 @@
         
             //initialiser un objet
             var library = new Library();
+            //MODAL
+            var myModal = new bootstrap.Modal($('#exampleModal'), {
+                backdrop: "static", // ou true/false selon vos besoins
+                keyboard: false
+            })
 
+            console.log(`modal`, myModal);
+            myModal.show()
 
         </script>
+
+        <script src="js/index.js"></script>
     </body>
 </html>

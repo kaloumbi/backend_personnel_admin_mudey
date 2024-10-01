@@ -1,5 +1,9 @@
 <h1>LIVRES LIST</h1>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="openModale()">
+    Add Livre
+</button>
 
 <div class="card-body">
     <div class="table-responsive">
@@ -34,3 +38,66 @@
         </table>
     </div>
 </div>
+
+
+
+
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Modal title</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+         
+          <form action="">
+              <div class="form-row">
+                  <div class="col">
+                      <label for="">Titre : </label>
+                      <input onchange="localStorage.setItem(this.name, this.value)" type="text" name="titre" class="form-control">
+                  </div>
+   
+   
+                  <div class="col">
+                      <label for="">Autheur : </label>
+                      <input onchange="localStorage.setItem(this.name, this.value)" type="text" name="autheur" class="form-control">
+                  </div>
+   
+   
+                  <div class="col">
+                      <label for="">ISBN : </label>
+                      <input onchange="localStorage.setItem(this.name, this.value)" type="text" name="isbn" class="form-control">
+                  </div>
+   
+   
+                  <div class="col">
+                    <label for="">Date Pub :</label>
+                    <input onchange="localStorage.setItem(this.name, this.value)" type="date" name="datePub" class="form-control">
+                  </div>
+                
+   
+   
+                  <div class="col">
+                    <label for="">Disponibilité :</label><br>
+                    <input onchange="localStorage.setItem(this.name, this.value)" type="radio" name="disponibilite" value="true"> Oui
+                    <input onchange="localStorage.setItem(this.name, this.value)" type="radio" name="disponibilite" value="false"> Non
+                </div>
+                
+   
+   
+              </div>
+          </form>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button onclick="addLivre()" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+   
+

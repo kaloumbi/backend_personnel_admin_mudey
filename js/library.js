@@ -5,6 +5,8 @@ class Library {
        this.api = "http://localhost/e-bestcommerce_mudey/backend_personnel/api/";
        this.actions = ['livres', 'emprunts', 'historiques', 'users'];
 
+       //tableau data
+       this.data = [];
        //appel des fonctions
        this.initRouter();
        this.initDataApp();
@@ -63,7 +65,8 @@ class Library {
 
             }).then((response) =>{
                 if (response.status == 200) {
-                    localStorage.setItem(action, JSON.stringify(response.result));
+                    this.data.push({name: action, data: response.result});
+                    // localStorage.setItem(action, JSON.stringify(response.result));
                 } else {
                 
                 }
@@ -73,9 +76,12 @@ class Library {
 
 
     //function to getData permettant de recuperer puis parcourir les données en local
-    getData(entity){
+    getData(action){
         //tester si les données sont définies sinon tableau vide
-        return JSON.parse(localStorage.getItem(entity)) ? JSON.parse(localStorage.getItem(entity)) : [];
+        var object = this.data.find(element => element.name == action);
+        return object.data;
+        //tester si les données sont définies sinon tableau vide
+        // return JSON.parse(localStorage.getItem(entity)) ? JSON.parse(localStorage.getItem(entity)) : [];
     }
 
 
