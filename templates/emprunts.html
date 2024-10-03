@@ -1,5 +1,10 @@
 <h1>EMPRUNT LIST</h1>
 
+<!-- Button trigger modal -->
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" onclick="openModaleEmpruntAdd()">
+    Add Emprunt
+</button>
+
 <div class="card-body">
     <div class="table-responsive">
         <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0" >
@@ -29,3 +34,75 @@
         </table>
     </div>
 </div>
+
+
+<!-- Modal -->
+<div class="modal" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h1 class="modal-title fs-5" id="exampleModalLabel">Add Emprunt</h1>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+        </div>
+        <div class="modal-body">
+         
+          <form action="" id="formEmprunt">
+              <div class="form-row">
+                  <div class="col">
+                      <label for="">Date Emprunt : </label>
+                      <input  type="date" name="dateEmprunt" class="form-control">
+                  </div>
+   
+   
+                  <div class="col">
+                      <label for="">Date Retour : </label>
+                      <input  type="date" name="dateRetour" class="form-control">
+                  </div>
+   
+   
+                  <div class="col">
+                      <label for="userSelect">User_id : </label>
+                      <select id="userSelect" name="userId" class="form-control">
+                        <!-- Les options des utilisateurs seront injectées ici -->
+                      </select>
+                  </div>
+   
+   
+                  <div class="col">
+                    <label for="livreSelect">Livre_id :</label>
+                    <select id="livreSelect" name="livreId" class="form-control">
+                        <!-- Les options des livres seront injectées ici -->
+                    </select>
+                  </div>
+                
+                </div>
+
+              </div>
+          </form>
+         
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+          <button onclick="addEmprunt()" type="button" class="btn btn-primary">Save changes</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+<script type="module">
+    import {Library} from './library.js';
+    
+    // initialiser un objet
+    var library = new Library();
+    library.loadUserOptions()
+    library.loadLivreOptions()
+    // MODAL
+    var myModal = new bootstrap.Modal($('#exampleModal'), {
+        backdrop: "static", // ou true/false selon vos besoins
+        keyboard: false
+    });
+
+    console.log(`modal`, myModal);
+    myModal.show();
+</script>
+
