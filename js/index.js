@@ -45,6 +45,48 @@ openModaleUpdateLivre = (id)  =>{
 
 }
 
+//fonction to update input form values
+updateLivre = (id) => {
+    let formUpdateLivre = document.getElementById("formUpdateLivre-"+id);
+    let data = new FormData(formUpdateLivre);
+
+    //parametres pour fonctionner
+    data.append("API_KEY", API_KEY);
+    data.append("id", id);
+
+    let dataVAlue = {};
+    for (var value of data.entries()) { //value = tableau de deux elts: clé et valeur settée
+        dataVAlue[value[0]] = value[1];
+    }
+
+    console.log(dataVAlue);
+    
+    const url = API + 'livre?'+constructURLParams(dataVAlue);
+
+    fetch(
+        url,
+        {method: "PUT"}
+
+    ).then((response) => {
+        if (response.ok) {
+            return response.json();
+        }else{
+            console.log("Erreur déclanchée lors de l'execution de la requette de mise à jour du Livre ! ");
+        }
+
+    }).then((result) => {
+        if (result.status == 200) {
+            console.log(result.result);
+            document.getElementById("formUpdateLivre-"+id).reset(); //vider les champs
+            
+        }else{
+            console.log(result.message);
+            
+        }
+    })
+    
+}
+
 
 //modal User
 openModaleUpdateUser = (id)  =>{

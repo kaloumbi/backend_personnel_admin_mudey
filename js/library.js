@@ -154,7 +154,7 @@ class Library {
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onclick="addLivre(${id})" type="button" class="btn btn-primary">Update Livre</button>
+                                    <button onclick="updateLivre(${id})" type="button" class="btn btn-primary">Update Livre</button>
                                     </div>
                                 </div>
                                 </div>
