@@ -45,6 +45,17 @@ openModaleUpdateLivre = (id)  =>{
 
 }
 
+openModaledDeleteLivreConfirmation = (id)  =>{
+    console.log(`Opening update modal for product ID: ${id}`);
+    var myModal = new bootstrap.Modal($(`#deleteLivre-${id}`), {
+        backdrop: true, // ou true/false selon vos besoins
+        keyboard: false
+    })
+    console.log(`modal`, myModal);
+    myModal.show()
+
+}
+
 //fonction to update input form values
 updateLivre = (id) => {
     let formUpdateLivre = document.getElementById("formUpdateLivre-"+id);
@@ -76,8 +87,34 @@ updateLivre = (id) => {
 
     }).then((result) => {
         if (result.status == 200) {
-            console.log(result.result);
-            document.getElementById("formUpdateLivre-"+id).reset(); //vider les champs
+           
+            //raffraichissement après la mise à jour
+            var table = $("#dataTable").DataTable();
+            var livres = table.rows().data();
+
+            var livre = livres.filter(element => element.id == id)[0];
+
+            var index = livres.indexOf(livre);
+            
+
+            livre.titre = dataVAlue.titre;
+            livre.isbn = dataVAlue.isbn;
+            livre.autheur = dataVAlue.autheur;
+            livre.datePub = dataVAlue.datePub;
+            livre.disponibilite = dataVAlue.disponibilite;
+
+
+            
+            //la fonction fnUpdate ne marche pas. c'est à revoir
+            // $("#dataTable").dataTable().fnUpdate(livre, index, undefined, false); //=> permet de mettre à jour une ligne, une colonne
+            // console.log(livre[0]);
+
+            // Mettre à jour la ligne dans la DataTable avec la nouvelle API
+            table.row(index).data(livre).draw(false); // Mise à jour de la ligne à l'index donné
+            
+            // console.log(result.result);
+            // document.getElementById("formUpdateLivre-"+id).reset(); //vider les champs
+
             
         }else{
             console.log(result.message);
@@ -242,6 +279,43 @@ constructURLParams = (objet) => {
     }
 
     return result;
+}
+
+
+/****************************
+            DELETE LIVRE
+****************************/
+
+deleteLivre = (id) => {
+    const url = API + "livre?id="+id+"&API_KEY="+API_KEY;
+
+    fetch(url, {
+        method: "DELETE",
+    }).then((response) => {
+        if (response.ok) {
+            return response.json()
+        } else {
+            console.log("Erreur déclanchée lors de l'execution de la requette de suppression du livre !");
+            
+        }
+    }).then((result) => {
+        if (result.status == 200) {
+            //raffraichissement après la mise à jour
+            var table = $("#dataTable").DataTable();
+            var livres = table.rows().data();
+ 
+            var livre = livres.filter(element => element.id == id)[0];
+ 
+            var index = livres.indexOf(livre);
+ 
+            // Mettre à jour la ligne dans la DataTable avec la nouvelle API (fnDelete n'existe plus !)
+            table.row(index).data(livre).draw(false);
+            console.log(result.result);
+            
+        } else {
+            console.log(result.message);
+        }
+    })
 }
 
 

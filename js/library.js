@@ -102,8 +102,9 @@ class Library {
                 { data: 'id',
                     render: function ( id, type, row ) {
                        return `<button type="button" class="btn btn-success" data-toggle="modal" data-target="#updateLivre-${id}" onclick="openModaleUpdateLivre(${id})"> UPDATE </button> 
+                              <button type="button" class="btn btn-danger" data-toggle="modal" data-target="#deleteLivre-${id}" onclick="openModaledDeleteLivreConfirmation(${id})"> DELETE </button> 
                        
-                            <!-- Modal -->
+                            <!-- Modal Update Livre -->
                             <div class="modal" id="updateLivre-${id}" tabindex="-1" aria-labelledby="updateLivreModalLabel" aria-hidden="true">
                                 <div class="modal-dialog">
                                 <div class="modal-content">
@@ -154,7 +155,31 @@ class Library {
                                     </div>
                                     <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                    <button onclick="updateLivre(${id})" type="button" class="btn btn-primary">Update Livre</button>
+                                    <button onclick="updateLivre(${id})" type="button" class="btn btn-primary" data-bs-dismiss="modal" >Update Livre</button>
+                                    </div>
+                                </div>
+                                </div>
+                            </div>
+
+
+
+                            <!-- Modal Delete Livre -->
+                            <div class="modal" id="deleteLivre-${id}" tabindex="-1" aria-labelledby="deleteLivreModalLabel" aria-hidden="true">
+                                <div class="modal-dialog">
+                                <div class="modal-content">
+                                    <div class="modal-header">
+                                    <h1 class="modal-title fs-5" id="exampleModalLabel">Delete Livre</h1>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close">x</button>
+                                    </div>
+                                    <div class="modal-body">
+                                    
+                                        <p> Are you sure you want to delete this Livre ? We remind you that this action is irreversible ! </p>
+
+
+                                    </div>
+                                    <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                    <button onclick="deleteLivre(${id})" type="button" class="btn btn-danger" data-bs-dismiss="modal" >Delete Livre</button>
                                     </div>
                                 </div>
                                 </div>
